@@ -24,7 +24,7 @@ class TaskList extends Component {
 
 const mapStateToProps = state => {
   return {
-    tasks: state.lists.tasks
+    tasks: state.tasks.tasks
   }
 }
 

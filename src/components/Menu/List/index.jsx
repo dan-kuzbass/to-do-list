@@ -2,11 +2,13 @@ import React, { Component } from 'react';
 import MenuItem from "../Item";
 import axios from "axios";
 import { connect } from "react-redux";
+import { getTasks } from "../../../actions/tasks";
 
 class MenuList extends Component {
   state = {
     menu: []
   }
+
   componentDidMount() {
     axios.get("http://localhost:3000/menu")
     .then(response => {
@@ -21,11 +23,17 @@ class MenuList extends Component {
     })
     console.log(this.props.tasks)
   }
+
+  onClick = async (e) => {
+    await this.props.getTasks(e.target.id)
+    console.log(this.props.tasks);
+  }
+
   render() {
     return (
-      <ul class="nav flex-column">
+      <ul className="nav flex-column">
         {this.state.menu.map(item => {
-          return <MenuItem key={item.id} name={item.name}/>;
+          return <MenuItem key={item.id} name={item.name} id={item.id} onClick={this.onClick}/>;
         })}
       </ul>
     )
@@ -34,10 +42,10 @@ class MenuList extends Component {
 
 const mapStateToProps = state => {
   return {
-    tasks: state.lists.tasks
+    tasks: state.tasks.tasks
   }
 }
 
 export default connect(mapStateToProps, {
-  
+  getTasks
 })(MenuList)
