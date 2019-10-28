@@ -12,4 +12,4 @@
 
 Для запуска фейкового json-server нужно выполнить команду
 
-### `json-server --watch db.json --port 3004`
+### `json-server --watch db.json --port 3001`
