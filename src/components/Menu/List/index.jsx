@@ -10,7 +10,7 @@ class MenuList extends Component {
   }
 
   componentDidMount() {
-    axios.get("http://localhost:3000/menu")
+    axios.get("http://localhost:3001/menu")
     .then(response => {
       // handle success
       this.setState({
@@ -21,7 +21,6 @@ class MenuList extends Component {
       // handle error
       console.log(error);
     })
-    console.log(this.props.tasks)
   }
 
   onClick = async (e) => {

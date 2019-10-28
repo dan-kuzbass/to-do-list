@@ -7,15 +7,16 @@ export function getTasks(id) {
       type: types.GET_TASKS
     })
     try {
-      const response = await axios.get(`http://localhost:3000/menu/${id}`);
+      const response = await axios.get(`http://localhost:3001/menu/${id}`);
       console.log(response.data)
       dispatch({
         type: types.GET_TASKS_SUCCEED,
         payload: response.data
       })
-    } catch {
+    } catch(error) {
       dispatch({
-        type: types.GET_TASKS_FAILED
+        type: types.GET_TASKS_FAILED,
+        error
       })
     }
   }
