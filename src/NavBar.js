@@ -9,7 +9,7 @@ function NavBar(props) {
   };
 
   return (
-    <nav className="navbar navbar-dark bg-primary">
+    <nav className="navbar navbar-dark bg-dark">
       <Link className="navbar-brand" to="/">
         ToDo-list
       </Link>
@@ -20,7 +20,7 @@ function NavBar(props) {
       {
         auth0Client.isAuthenticated() &&
         <div>
-          <label className="mr-2 text-white">{auth0Client.getProfile().name}</label>
+          <label className="ml-2 text-white">{auth0Client.getProfile() ? auth0Client.getProfile().name : ""}</label>
           <button className="btn btn-dark" onClick={() => {signOut()}}>Sign Out</button>
         </div>
       }

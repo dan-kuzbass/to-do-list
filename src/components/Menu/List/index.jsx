@@ -34,6 +34,7 @@ class MenuList extends Component {
         {this.state.menu.map(item => {
           return <MenuItem key={item.id} name={item.name} id={item.id} onClick={this.onClick}/>;
         })}
+       
       </ul>
     )
   }

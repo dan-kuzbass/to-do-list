@@ -13,35 +13,37 @@ class App extends Component {
       checkingSession: true,
     }
   }
-  // async componentDidMount() {
-  //   if (this.props.location.pathname === '/callback') return;
-    
-  // }
-  // async componentDidMount() {
-  //   if (this.props.location.pathname === '/callback') {
-  //     this.setState({checkingSession:false});
-  //     return;
-  //   }
-  //   try {
-  //     await auth0Client.silentAuth();
-  //     this.forceUpdate();
-  //   } catch (err) {
-  //     if (err.error !== 'login_required') console.log(err.error);
-  //   }
-  //   this.setState({checkingSession:false});
-  // }
+
+  async componentDidMount() {
+    if (this.props.location.pathname === '/callback') {
+      this.setState({checkingSession:false});
+      return;
+    }
+    try {
+      await auth0Client.silentAuth();
+      this.forceUpdate();
+    } catch (err) {
+      if (err.error !== 'login_required') console.log(err.error);
+    }
+    this.setState({checkingSession:false});
+  }
 
   render() {
-    return (
-      <>
-        <SecuredRoute 
-          path='/'
-          component={Dashboard}
-          checkingSession={this.state.checkingSession} 
-        />
-        <Route exact path="/callback" component={Callback}/>
-      </>
-    );
+    try {
+      return (
+        <>
+          <Route 
+            path='/'
+            component={Dashboard}
+            checkingSession={this.state.checkingSession} 
+          />
+          <Route exact path="/callback" component={Callback}/>
+        </>
+      );
+    }
+    catch(error) {
+      console.log(error);
+    }
   }
 }
 
