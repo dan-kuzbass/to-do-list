@@ -24,8 +24,7 @@ class MenuList extends Component {
   }
 
   onClick = async (e) => {
-    await this.props.getTasks(e.target.id)
-    console.log(this.props.tasks);
+    await this.props.getTasks(e.target.id);
   }
 
   render() {

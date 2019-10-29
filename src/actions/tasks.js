@@ -8,7 +8,6 @@ export function getTasks(id) {
     })
     try {
       const response = await axios.get(`http://localhost:3001/menu/${id}`);
-      console.log(response.data)
       dispatch({
         type: types.GET_TASKS_SUCCEED,
         payload: response.data
